@@ -15,7 +15,7 @@ public class TokenPass {
     public void distributeCurrentPlayerTokens(){
         int temp = board[currentPlayer];
         board[currentPlayer]=0;
-        for(int i = temp; i>0;i--){
+        for(int i = 1; i<temp+1;i++){
             board[(currentPlayer+i)%playerCount]++;
         }
     }
@@ -35,8 +35,16 @@ public class TokenPass {
     }
 
     public int gameOver(){
-        if(board[currentPlayer] <= 0){
-            return currentPlayer;
+        if(currentPlayer==0) {
+            if (board[playerCount-1] <= 0) {
+                return (playerCount-1);
+            }
+        }
+        else{
+            if(board[currentPlayer-1]<=0){
+                return (currentPlayer-1);
+            }
+
         }
         return -1;
     }
